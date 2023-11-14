@@ -1,0 +1,62 @@
+[
+    {
+        "id": "SR1000",
+        "title": "Software Installation",
+        "description": "In need to install Java Software on my machine",
+        "category": "Software",
+        "type": "Software Installation",
+        "status": "Active",
+        "userName": "Tom Mccan",
+        "assignedAgent": "Philip Andersen",
+        "createDate": "2023-11-13",
+        "modifiedDate": "2023-11-14"
+    },
+    {
+        "id": "SR1001",
+        "title": "Facility request",
+        "description": "In need a new chair",
+        "category": "Facility",
+        "type": "Request",
+        "status": "Active",
+        "userName": "John Gel",
+        "assignedAgent": "Mike Roger",
+        "createDate": "2023-11-13",
+        "modifiedDate": "2023-11-14"
+    },
+    {
+        "id": "SR1002",
+        "title": "New Badge request",
+        "description": "In need to install Java Software on my machine",
+        "category": "Security",
+        "type": "Badge Request",
+        "status": "Active",
+        "userName": "Tim Rel",
+        "assignedAgent": "Philip Andersen",
+        "createDate": "2023-11-13",
+        "modifiedDate": "2023-11-14"
+    },
+    {
+        "id": "SR1003",
+        "title": "Software Installation",
+        "description": "In need to install VSCode Software on my machine",
+        "category": "Software",
+        "type": "Software Installation",
+        "status": "Active",
+        "userName": "Stacy Kim",
+        "assignedAgent": "Mike Tel",
+        "createDate": "2023-11-13",
+        "modifiedDate": "2023-11-14"
+    },
+    {
+        "id": "SR1004",
+        "title": "Software Installation",
+        "description": "In need to install Git Software on my machine",
+        "category": "Software",
+        "type": "Software Installation",
+        "status": "Active",
+        "userName": "Roger Mat",
+        "assignedAgent": "Dolly Hans",
+        "createDate": "2023-11-13",
+        "modifiedDate": "2023-11-14"
+    }
+]
