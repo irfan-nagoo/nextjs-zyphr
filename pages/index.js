@@ -2,66 +2,67 @@ import { useState } from "react";
 import {
   getActiveServiceRequestCount,
   getAllServiceRequests,
-  getUnassignedServiceRequestCount, search} from "../lib/service-request";
+  getUnassignedServiceRequestCount, search
+} from "../lib/service-request";
 import { getDashboardHeaders } from "../lib/utils";
+import ServiceRequest from './service-requests/service-request'
 
 
 const pageNo = 0
-const pageSize = 3;
+const pageSize = 5;
 let searchQuery;
 const colHeaders = getDashboardHeaders();
-const totalRecordCount = getActiveServiceRequestCount();
-const unassignedRecordCount = getUnassignedServiceRequestCount();
-const initialResult = getAllServiceRequests(pageNo, pageSize);
+const totalRecordCount = await getActiveServiceRequestCount();
+const unassignedRecordCount = await getUnassignedServiceRequestCount();
+const initialResult = await getAllServiceRequests(pageNo, pageSize);
 
 export default function Home() {
   let [currentPage, setCurrentPage] = useState(pageNo);
   let [rowData, setRowData] = useState(initialResult);
+  let [popupActive, setPopupActive] = useState(false)
 
-  const handleClick = (pageNo) => {
+  const handleClick = async (pageNo) => {
     if (pageNo < 0) {
       pageNo = 0;
     }
     setCurrentPage(pageNo);
-    const result = (searchQuery && searchQuery.length > 0) ? search(searchQuery, pageNo, pageSize)
-      : getAllServiceRequests(pageNo, pageSize)
+    const result = (searchQuery && searchQuery.length > 0)
+      ? await search(searchQuery, pageNo, pageSize) : await getAllServiceRequests(pageNo, pageSize)
     setRowData(result);
   }
 
-  const handleInput = (event) => {
+  const handleInput = async (event) => {
     searchQuery = event.target.value;
     if (searchQuery.length >= 3) {
       setCurrentPage(pageNo);
-      setRowData(search(searchQuery, pageNo, pageSize));
+      setRowData(await search(searchQuery, pageNo, pageSize));
     } else if (searchQuery.length === 0) {
       setCurrentPage(pageNo);
-      setRowData(getAllServiceRequests(pageNo, pageSize));
+      setRowData(await getAllServiceRequests(pageNo, pageSize));
     }
   }
 
 
   return (
     <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 h-100 text-white py-6 overflow-y-auto overflow-x-auto">
+      <ServiceRequest isOpen={popupActive} onClose={() => setPopupActive(false)} />
       <main>
         <h1 className="text-xl mx-auto sm:px-6 lg:px-10 py-4 text-black underline">
           My Dashboard
         </h1>
-
         <div className="flex mx-auto lg:h-20 lg:px-10 py-3">
           <div className="flwx-row bg-white border-b-4 border-black rounded-xl overflow-hidden hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer" >
             <div className="bg-[#0a0a0a] flex h-14 items-center">
-              <p className="ml-2 text-white text-left text-xs font-bold uppercase">Open Requests:</p>
+              <p className="ml-2 text-white text-left text-xs font-bold uppercase">Open Requests</p>
               <h1 className="ml-14 mr-2 border-2 border-indigo-700 py-2 px-4 rounded-full">{totalRecordCount}</h1>
             </div>
-
           </div>
           <div className="px-2"></div>
           <div className="bg-white border-b-4 border-black rounded-xl overflow-hidden hover:shadow-2xl transition duration-500 transform hover:scale-105 cursor-pointer" >
-          <div className="bg-[#0a0a0a] flex h-14 items-center">
-              <p className="ml-2 text-white text-left text-xs font-bold uppercase">unassigned Requests:</p>
+            <div className="bg-[#0a0a0a] flex h-14 items-center">
+              <p className="ml-2 text-white text-left text-xs font-bold uppercase">Unassigned Requests</p>
               <h1 className="ml-4 mr-2 border-2 border-indigo-700 py-2 px-4 rounded-full">{unassignedRecordCount}</h1>
             </div>
-
           </div>
         </div>
 
@@ -76,7 +77,14 @@ export default function Home() {
               </div>
               <input type="text" id="table-search" className="block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search" onInput={handleInput} />
             </div>
+            <div className="absolute top-0 right-0 py-2 px-3">
+              <button type="submit" className="text-white inline-flex items-center bg-[#0a0a0a] border-2 border-indigo-700 focus:outline-none focus:ring-black font-medium rounded-lg text-xs px-3 py-1.5 text-center hover:bg-[#1a1a1a]" onClick={() => setPopupActive(true)}>
+                <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
+                New Service Request
+              </button>
+            </div>
           </div>
+
           <table className="w-full  text-sm text-left rtl:text-right text-gray-700 shadow-2xl">
             <thead className="text-xs text-gray-700 uppercase bg-[#0a0a0a] text-white">
               <tr>
@@ -112,7 +120,9 @@ export default function Home() {
                     {ticket.category}
                   </td>
                   <td className="px-6 py-4">
-                    {ticket.status}
+                    <span className={`inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded-full ${ticket.status === 'Open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                      {ticket.status}
+                    </span>
                   </td>
                   <td className="px-6 py-4">
                     {ticket.userName}
@@ -124,7 +134,7 @@ export default function Home() {
                     {ticket.createDate}
                   </td>
                   <td className="px-6 py-4">
-                    <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
+                    <button className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-1 px-2 rounded-full">Open</button>
                   </td>
                 </tr>
               ))}
