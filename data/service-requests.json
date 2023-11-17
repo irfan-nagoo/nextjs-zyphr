@@ -103,5 +103,71 @@
     "id": "SR934",
     "createDate": "2023-11-16T16:14:06.111Z",
     "modifiedDate": "2023-11-16T16:14:06.111Z"
+  },
+  {
+    "title": "I need to change the ID badge",
+    "category": "Security",
+    "type": "New Badge",
+    "description": "I need new badge",
+    "userName": "Irfan Nagoo",
+    "id": "SR268",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T07:04:42.043Z",
+    "modifiedDate": "2023-11-17T07:04:42.043Z"
+  },
+  {
+    "title": "I need software upgrade",
+    "category": "Software",
+    "type": "Software Installation",
+    "description": "I  need to upgrade my windows",
+    "userName": "Irfan Nagoo",
+    "id": "SR231",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T08:08:08.495Z",
+    "modifiedDate": "2023-11-17T08:08:08.495Z"
+  },
+  {
+    "title": "Need new chair ",
+    "category": "Facility",
+    "type": "New Item",
+    "description": "I need new chair",
+    "userName": "Irfan Nagoo",
+    "id": "SR143",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T08:14:06.518Z",
+    "modifiedDate": "2023-11-17T08:14:06.518Z"
+  },
+  {
+    "title": "Top of the charts request I required",
+    "category": "Facility",
+    "type": "Change Item",
+    "description": "Top of the chart request",
+    "userName": "John Cams",
+    "id": "SR807",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T08:46:43.782Z",
+    "modifiedDate": "2023-11-17T08:46:43.782Z"
+  },
+  {
+    "title": "Software installation",
+    "category": "Software",
+    "type": "Software Installation",
+    "description": "I need software",
+    "userName": "Mike Jackson",
+    "id": "SR97",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T08:58:47.321Z",
+    "modifiedDate": "2023-11-17T08:58:47.321Z"
+  },
+  {
+    "title": "New Software request",
+    "category": "Software",
+    "type": "Software Installation",
+    "description": "Install vscode",
+    "userName": "Mike Jackson",
+    "id": "SR736",
+    "status": "Unassigned",
+    "createDate": "2023-11-17T10:44:33.541Z",
+    "modifiedDate": "2023-11-17T10:44:33.541Z"
   }
 ]

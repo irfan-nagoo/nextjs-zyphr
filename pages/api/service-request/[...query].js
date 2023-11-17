@@ -7,7 +7,7 @@ const jsonPath = path.join(process.cwd(), 'data/service-requests.json');
 
 export default async function handler(req, res) {
 
-    console.info(req.query.query[0]);
+    console.info(req.method, req.query.query[0]);
     switch (req.method) {
 
         case 'GET':
@@ -34,39 +34,42 @@ export default async function handler(req, res) {
 }
 
 
-export function getAllServiceRequests(pageNo, pageSize) {
-    const result = jsonData.filter(element => element.status !== StatusType.CLOSED);
+function getAllServiceRequests(pageNo, pageSize) {
+    pageNo = Number(pageNo);
+    pageSize = Number(pageSize);
+    const result = jsonData.filter(element => element.status !== StatusType.CLOSED)
+            .sort( (e1,e2) => new Date(e2.modifiedDate) - new Date(e1.modifiedDate));
     const length = result.length
     const start = (pageNo * pageSize);
     const end = (start + pageSize) > length ? length : (start + pageSize);
     return result.slice(start, end);
 }
 
-export function getActiveServiceRequestCount() {
+function getActiveServiceRequestCount() {
     return jsonData.filter(element => element.status !== StatusType.CLOSED).length
 }
 
-export function getUnassignedServiceRequestCount(q, pageNo, pageSize) {
+function getUnassignedServiceRequestCount(q, pageNo, pageSize) {
     return jsonData.filter(element => element.status === StatusType.UNASSIGNED).length
 }
 
-export function search(q, pageNo, pageSize) {
+function search(q, pageNo, pageSize) {
+    pageNo = Number(pageNo);
+    pageSize = Number(pageSize);
     const result = jsonData.filter(element => element.status !== StatusType.CLOSED
         && (element.id.search(new RegExp(q, 'i')) !== -1 || element.title.search(new RegExp(q, 'i')) !== -1));
-    const length = result.length
+    const length = result.length;
     const start = (pageNo * pageSize);
     const end = (start + pageSize) > length ? length : (start + pageSize);
     return result.slice(start, end);
 }
 
-// typical GET REST API call to /service-request/{id}
-export function getServiceRequestById(id) {
+function getServiceRequestById(id) {
     const result = jsonData.filter(element => element.id === id);
     return result;
 }
 
-// typical POST REST API call to /service-request
-export async function saveServiceRequest(request) {
+async function saveServiceRequest(request) {
     // generate ID and audit fields
     request.id = 'SR' + Math.floor(Math.random() * 1000);
     request.status = StatusType.UNASSIGNED;
