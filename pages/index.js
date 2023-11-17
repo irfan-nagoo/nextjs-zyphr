@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   getActiveServiceRequestCount,
   getAllServiceRequests,
   getUnassignedServiceRequestCount, search
 } from "../lib/service-request";
 import { getDashboardHeaders } from "../lib/utils";
-import ServiceRequest from './service-requests/service-request'
+import CreateServiceRequest from '../components/create-service-request';
+import ViewUpdateServiceRequest from "../components/view-update-service-request";
 import { getCategoryAndType } from "../lib/utils";
 
 
@@ -13,11 +14,19 @@ let searchQuery;
 const pageNo = 0
 const pageSize = 5;
 
-export default function Home({ colHeaders, totalRecordCount, unassignedRecordCount, initialResult, categoryType}) {
+export default function Home({ colHeaders, totalRecordCount, unassignedRecordCount, initialResult, categoryType }) {
 
-  let [currentPage, setCurrentPage] = useState(pageNo);
-  let [rowData, setRowData] = useState(initialResult);
-  let [popupActive, setPopupActive] = useState(false)
+  const [currentPage, setCurrentPage] = useState(pageNo);
+  const [rowData, setRowData] = useState(initialResult);
+  const [createActive, setCreateActive] = useState(false)
+  const [viewUpdateActive, setViewUpdateActive] = useState(false);
+  const [id, setId] = useState(0);
+
+  const handleOpenClick = async (id) => {
+    setId(id);
+    setViewUpdateActive(true);
+  }
+
   const handleClick = async (pageNo) => {
     if (pageNo < 0) {
       pageNo = 0;
@@ -30,11 +39,10 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
 
   const handleInput = async (event) => {
     searchQuery = event.target.value;
+    setCurrentPage(pageNo);
     if (searchQuery.length >= 3) {
-      setCurrentPage(pageNo);
       setRowData(await search(searchQuery, pageNo, pageSize));
     } else if (searchQuery.length === 0) {
-      setCurrentPage(pageNo);
       setRowData(await getAllServiceRequests(pageNo, pageSize));
     }
   }
@@ -42,7 +50,8 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
 
   return (
     <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 h-100 text-white py-6 overflow-y-auto overflow-x-auto">
-      <ServiceRequest categoryType={categoryType} isOpen={popupActive} onClose={() => setPopupActive(false)} />
+      <CreateServiceRequest categoryType={categoryType} isOpen={createActive} onClose={() => setCreateActive(false)} />
+      <ViewUpdateServiceRequest id={id} categoryType={categoryType} isOpen={viewUpdateActive} onClose={() => setViewUpdateActive(false)} />
       <main>
         <h1 className="text-xl mx-auto sm:px-6 lg:px-10 py-4 text-black underline">
           My Dashboard
@@ -75,7 +84,7 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
               <input type="text" id="table-search" className="block py-2 ps-10 text-sm text-white border border-indigo-700 rounded-full w-80 bg-[#121212] focus:ring-blue-500 focus:border-blue-500" placeholder="Search" onInput={handleInput} />
             </div>
             <div className="absolute top-0 right-0 py-3 px-3">
-              <button type="submit" className="text-white inline-flex items-center bg-[#121212] border border-indigo-700 focus:outline-none focus:ring-black font-medium rounded-full text-xs px-3 py-2 text-center hover:bg-[#1a1a1a]" onClick={() => setPopupActive(true)}>
+              <button type="submit" className="text-white inline-flex items-center bg-[#121212] border border-indigo-700 focus:outline-none focus:ring-black font-medium rounded-full text-xs px-3 py-2 text-center hover:bg-[#1a1a1a]" onClick={() => setCreateActive(true)}>
                 <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
                 New Service Request
               </button>
@@ -131,7 +140,7 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
                     {element.createDate}
                   </td>
                   <td className="px-6 py-4">
-                    <button className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-1 px-2 rounded-full">View</button>
+                    <button className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-1 px-2 rounded-full" onClick={() => handleOpenClick(element.id)}>Open</button>
                   </td>
                 </tr>
               ))}
@@ -176,6 +185,6 @@ export async function getStaticProps() {
   const initialResult = await getAllServiceRequests(pageNo, pageSize);
   const categoryType = await getCategoryAndType();
   return {
-    props: { colHeaders, totalRecordCount, unassignedRecordCount, initialResult, categoryType},
+    props: { colHeaders, totalRecordCount, unassignedRecordCount, initialResult, categoryType },
   };
 }
