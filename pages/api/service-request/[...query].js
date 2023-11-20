@@ -13,64 +13,93 @@ export default async function handler(req, res) {
         case 'GET':
             switch (req.query.query[0]) {
                 case 'total-count':
-                    return res.status(200).json({ count: getActiveServiceRequestCount() });
+                    return getActiveServiceRequestCount(req, res);
                 case 'unassigned-count':
-                    return res.status(200).json({ count: getUnassignedServiceRequestCount() });
+                    return getUnassignedServiceRequestCount(req, res);
                 case 'list':
-                    return res.status(200).json(getAllServiceRequests(req.query.pageNo, req.query.pageSize));
+                    return getAllServiceRequests(req, res);
                 case 'search':
-                    return res.status(200).json(search(req.query.q, req.query.pageNo, req.query.pageSize));
+                    return search(req, res);
                 default:
-                    return res.status(200).json(getServiceRequestById(req.query.query[0]));
+                    return getServiceRequestById(req,res);
             }
-            break;
         case 'POST':
-            await saveServiceRequest(req.body);
-            break;
+            return await saveServiceRequest(req, res);
         case 'PUT':
+            return await updateServiceRequest(req, res);
 
     }
     return res.status(200).json({ name: "nextjs" });
 }
 
 
-function getAllServiceRequests(pageNo, pageSize) {
-    pageNo = Number(pageNo);
-    pageSize = Number(pageSize);
+function getAllServiceRequests(req, res) {
+    const pageNo = Number(req.query.pageNo);
+    const pageSize = Number(req.query.pageSize);
     const result = jsonData.filter(element => element.status !== StatusType.CLOSED)
-            .sort( (e1,e2) => new Date(e2.modifiedDate) - new Date(e1.modifiedDate));
+        .sort((e1, e2) => new Date(e2.modifiedDate) - new Date(e1.modifiedDate));
     const length = result.length
     const start = (pageNo * pageSize);
     const end = (start + pageSize) > length ? length : (start + pageSize);
-    return result.slice(start, end);
+    return res.status(200).json({
+        code: "OK",
+        message: "Request processed Successfully",
+        serviceRequests: result.slice(start, end)
+    });
 }
 
-function getActiveServiceRequestCount() {
-    return jsonData.filter(element => element.status !== StatusType.CLOSED).length
+function getActiveServiceRequestCount(req, res) {
+    return res.status(200).json({
+        code: "OK",
+        message: "Request processed Successfully",
+        count: jsonData.filter(element => element.status !== StatusType.CLOSED).length
+    }); 
 }
 
-function getUnassignedServiceRequestCount(q, pageNo, pageSize) {
-    return jsonData.filter(element => element.status === StatusType.UNASSIGNED).length
+function getUnassignedServiceRequestCount(req, res) {
+    return res.status(200).json({
+        code: "OK",
+        message: "Request processed Successfully",
+        count: jsonData.filter(element => element.status === StatusType.UNASSIGNED).length
+    });
 }
 
-function search(q, pageNo, pageSize) {
-    pageNo = Number(pageNo);
-    pageSize = Number(pageSize);
+function search(req, res) {
+    const q = req.query.q;
+    const pageNo = Number(req.query.pageNo);
+    const pageSize = Number(req.query.pageSize);
     const result = jsonData.filter(element => element.status !== StatusType.CLOSED
         && (element.id.search(new RegExp(q, 'i')) !== -1 || element.title.search(new RegExp(q, 'i')) !== -1));
     const length = result.length;
     const start = (pageNo * pageSize);
     const end = (start + pageSize) > length ? length : (start + pageSize);
-    return result.slice(start, end);
+    return res.status(200).json({
+        code: "OK",
+        message: "Request processed Successfully",
+        serviceRequests: result.slice(start, end)
+    });
 }
 
-function getServiceRequestById(id) {
-    const result = jsonData.filter(element => element.id === id);
-    return result;
+function getServiceRequestById(req, res) {
+    const id = req.query.query[0];
+    const result = jsonData.find(element => element.id === id);
+    if (result) {
+        return res.status(200).json({
+            code: "OK",
+            message: "Request processed Successfully",
+            serviceRequest: result
+        });
+    } else {
+        return res.status(404).json({
+            errorCode: "NOT FOUND",
+            errorMesage: "Record not found"
+        });
+    }
 }
 
-async function saveServiceRequest(request) {
+async function saveServiceRequest(req, res) {
     // generate ID and audit fields
+    const request = req.body;
     request.id = 'SR' + Math.floor(Math.random() * 1000);
     request.status = StatusType.UNASSIGNED;
     const date = new Date().toISOString();
@@ -78,4 +107,32 @@ async function saveServiceRequest(request) {
     request.modifiedDate = date;
     jsonData.push(request);
     await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
+    return res.status(200).json({
+        code: "OK",
+        message: "Request processed Successfully"
+    });
+}
+
+
+async function updateServiceRequest(req, res) {
+    const request = req.body;
+    const result = jsonData.find(element => element.id === request.id);
+    if (result) {
+        result.title = request.title;
+        result.description = request.description;
+        result.category = request.category;
+        result.type = request.type;
+        result.userName = request.userName;
+        result.modifiedDate = new Date().toISOString();
+        await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
+        return res.status(404).json({
+            code: "OK",
+            message: "Request processed Successfully"
+        });
+    } else {
+        return res.status(404).json({
+            errorCode: "NOT FOUND",
+            errorMesage: "Record not found"
+        });
+    }
 }

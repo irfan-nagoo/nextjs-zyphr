@@ -47,11 +47,14 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
     }
   }
 
-
   return (
     <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 h-100 text-white py-6 overflow-y-auto overflow-x-auto">
-      <CreateServiceRequest categoryType={categoryType} isOpen={createActive} onClose={() => setCreateActive(false)} />
-      <ViewUpdateServiceRequest id={id} categoryType={categoryType} isOpen={viewUpdateActive} onClose={() => setViewUpdateActive(false)} />
+      {createActive &&
+        <CreateServiceRequest categoryType={categoryType} isOpen={createActive} onClose={() => setCreateActive(false)} />
+      }
+      {viewUpdateActive &&
+        <ViewUpdateServiceRequest id={id} categoryType={categoryType} isOpen={viewUpdateActive} onClose={() => setViewUpdateActive(false)} />
+      }
       <main>
         <h1 className="text-xl mx-auto sm:px-6 lg:px-10 py-4 text-black underline">
           My Dashboard
@@ -137,7 +140,7 @@ export default function Home({ colHeaders, totalRecordCount, unassignedRecordCou
                     {element.assignedAgent}
                   </td>
                   <td className="px-6 py-4">
-                    {element.createDate}
+                    {element.createDate && element.createDate.substring(0, 10)}
                   </td>
                   <td className="px-6 py-4">
                     <button className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-1 px-2 rounded-full" onClick={() => handleOpenClick(element.id)}>Open</button>

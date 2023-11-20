@@ -17,7 +17,7 @@ export default function CreateServiceRequest({ categoryType, isOpen, onClose }) 
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const jsonRequest = JSON.stringify(Object.fromEntries(formData));
+        const jsonRequest = Object.fromEntries(formData);
         await saveServiceRequest(jsonRequest);
         onClose();
         window.location.reload();

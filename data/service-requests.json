@@ -16,7 +16,7 @@
     "title": "Facility request",
     "description": "In need a new chair",
     "category": "Facility",
-    "type": "Request",
+    "type": "New Item",
     "status": "Open",
     "userName": "John Gel",
     "assignedAgent": "Mike Roger",
@@ -28,7 +28,7 @@
     "title": "New Badge request",
     "description": "In need to install Java Software on my machine",
     "category": "Security",
-    "type": "Badge Request",
+    "type": "Activate Badge",
     "status": "Open",
     "userName": "Tim Rel",
     "assignedAgent": "Philip Andersen",
@@ -63,7 +63,7 @@
     "title": "Facility request",
     "description": "In need a coffee cup",
     "category": "Facility",
-    "type": "Request",
+    "type": "New Item",
     "status": "Open",
     "userName": "Roger Mat",
     "assignedAgent": "Dolly Hans",
@@ -96,7 +96,7 @@
   {
     "title": "Software Installation",
     "category": "Software",
-    "type": "Software",
+    "type": "Software Installation",
     "description": "I need to install github",
     "status": "Unassigned",
     "userName": "Irfan Nagoo",
@@ -191,5 +191,38 @@
     "status": "Unassigned",
     "createDate": "2023-11-17T13:20:38.529Z",
     "modifiedDate": "2023-11-17T13:20:38.529Z"
+  },
+  {
+    "title": "Software installation request",
+    "category": "Software",
+    "type": "Software Installation",
+    "description": "I need to install Eclipse IDE",
+    "userName": "Irfan Nagoo",
+    "id": "SR478",
+    "status": "Unassigned",
+    "createDate": "2023-11-20T06:55:02.992Z",
+    "modifiedDate": "2023-11-20T14:00:29.564Z"
+  },
+  {
+    "title": "New charger request",
+    "category": "Facility",
+    "type": "New Item",
+    "description": "I need new  charger",
+    "userName": "Tim Mccan",
+    "id": "SR627",
+    "status": "Unassigned",
+    "createDate": "2023-11-20T13:52:01.070Z",
+    "modifiedDate": "2023-11-20T16:07:09.993Z"
+  },
+  {
+    "title": "New Table request",
+    "category": "Facility",
+    "type": "New Item",
+    "description": "I need new table",
+    "userName": "John Cams",
+    "id": "SR469",
+    "status": "Unassigned",
+    "createDate": "2023-11-20T15:57:36.192Z",
+    "modifiedDate": "2023-11-20T16:05:33.104Z"
   }
 ]
