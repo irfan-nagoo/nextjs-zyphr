@@ -7,16 +7,16 @@ export default function Header() {
         close: "ease-in duration-75 transform opacity-0 scale-95",
     }
 
-    let [state, setState] = useState('close');
+    const [state, setState] = useState('close');
     const setActive = (e) => {
-        state = (state === 'open') ? 'close' : 'open';
-        setState(state);
+        const stateOption = (state === 'open') ? 'close' : 'open';
+        setState(stateOption);
     }
 
     return (
         <div>
             <Head>
-                <title>Create Next App</title>
+                <title>Request Tracker</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <nav className="bg-[#0a0a0a] border-b-2 border-gray-700">
@@ -56,9 +56,9 @@ export default function Header() {
                                 <div className="flex space-x-4">
                                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                                     <a href="/" className="bg-gray-900 text-white rounded-md px-3 py-2 text-md font-medium" aria-current="page">Dashboard</a>
-                                    <a href="/comments/comments-page" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">Comments</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">Projects</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">Calendar</a>
+                                    <a href="/history/history-page" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">History</a>
+                                    <a href="/reports/reports-page" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">Reports</a>
+                                    <a href="/about/about-page" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium">About</a>
                                 </div>
                             </div>
                         </div>
@@ -108,9 +108,9 @@ export default function Header() {
                     <div className="space-y-1 px-2 pb-3 pt-2">
                         {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                         <a href="/" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-                        <a href="/comments/comments-page" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Comments</a>
-                        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-                        <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+                        <a href="/history/history-page" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">History</a>
+                        <a href="/reports/reports-page" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Reports</a>
+                        <a href="/about/about-page" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About</a>
                     </div>
                 </div>
             </nav>

@@ -21,12 +21,19 @@ export default async function handler(req, res) {
                 case 'search':
                     return search(req, res);
                 default:
-                    return getServiceRequestById(req,res);
+                    return getServiceRequestById(req, res);
             }
         case 'POST':
             return await saveServiceRequest(req, res);
         case 'PUT':
-            return await updateServiceRequest(req, res);
+            switch (req.query.query[1]) {
+                case 'assign':
+                    return await assignServiceRequest(req, res);
+                case 'close':
+                    return await closeServiceRequest(req, res);
+                default:
+                    return await updateServiceRequest(req, res);
+            }
 
     }
     return res.status(200).json({ name: "nextjs" });
@@ -53,7 +60,7 @@ function getActiveServiceRequestCount(req, res) {
         code: "OK",
         message: "Request processed Successfully",
         count: jsonData.filter(element => element.status !== StatusType.CLOSED).length
-    }); 
+    });
 }
 
 function getUnassignedServiceRequestCount(req, res) {
@@ -126,6 +133,47 @@ async function updateServiceRequest(req, res) {
         result.modifiedDate = new Date().toISOString();
         await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
         return res.status(404).json({
+            code: "OK",
+            message: "Request processed Successfully"
+        });
+    } else {
+        return res.status(404).json({
+            errorCode: "NOT FOUND",
+            errorMesage: "Record not found"
+        });
+    }
+}
+
+
+async function assignServiceRequest(req, res) {
+    const id = req.query.query[0];
+    const result = jsonData.find(element => element.id === id);
+    if (result) {
+        result.assignedAgent = req.body.userName;
+        result.status = StatusType.OPEN;
+        result.modifiedDate = new Date().toISOString();
+        await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
+        return res.status(200).json({
+            code: "OK",
+            message: "Request processed Successfully"
+        });
+    } else {
+        return res.status(404).json({
+            errorCode: "NOT FOUND",
+            errorMesage: "Record not found"
+        });
+    }
+}
+
+
+async function closeServiceRequest(req, res) {
+    const id = req.query.query[0];
+    const result = jsonData.find(element => element.id === id);
+    if (result) {
+        result.status = StatusType.CLOSED;
+        result.modifiedDate = new Date().toISOString();
+        await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
+        return res.status(200).json({
             code: "OK",
             message: "Request processed Successfully"
         });

@@ -73,14 +73,14 @@ export default function CreateServiceRequest({ categoryType, isOpen, onClose }) 
                         </div>
 
                         <div className="flex justify-end">
-                            <div className="px-2">
-                                <button type="button" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-4 rounded-full" onClick={onClose}>
-                                    Close
-                                </button>
-                            </div>
                             <div className="">
                                 <button type="submit" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-5 rounded-full">
                                     Save
+                                </button>
+                            </div>
+                            <div className="px-2">
+                                <button type="button" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-4 rounded-full" onClick={onClose}>
+                                    Cancel
                                 </button>
                             </div>
                         </div>

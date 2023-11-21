@@ -66,9 +66,9 @@
     "type": "New Item",
     "status": "Open",
     "userName": "Roger Mat",
-    "assignedAgent": "Dolly Hans",
+    "assignedAgent": "Stacy Kim",
     "createDate": "2023-11-15",
-    "modifiedDate": "2023-11-15"
+    "modifiedDate": "2023-11-21T08:32:56.944Z"
   },
   {
     "id": "SR1006",
@@ -118,13 +118,14 @@
   {
     "title": "I need software upgrade",
     "category": "Software",
-    "type": "Software Installation",
+    "type": "Software Upgrade",
     "description": "I  need to upgrade my windows",
     "userName": "Irfan Nagoo",
     "id": "SR231",
-    "status": "Unassigned",
+    "status": "Open",
     "createDate": "2023-11-17T08:08:08.495Z",
-    "modifiedDate": "2023-11-17T08:08:08.495Z"
+    "modifiedDate": "2023-11-21T14:28:34.092Z",
+    "assignedAgent": "Roger Mat"
   },
   {
     "title": "Need new chair ",
@@ -133,9 +134,10 @@
     "description": "I need new chair",
     "userName": "Irfan Nagoo",
     "id": "SR143",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-17T08:14:06.518Z",
-    "modifiedDate": "2023-11-17T08:14:06.518Z"
+    "modifiedDate": "2023-11-21T12:20:56.469Z",
+    "assignedAgent": "Mike Roger"
   },
   {
     "title": "Top of the charts request I required",
@@ -188,9 +190,9 @@
     "description": "I need to activate ID badge",
     "userName": "Irfan Nagoo",
     "id": "SR671",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-17T13:20:38.529Z",
-    "modifiedDate": "2023-11-17T13:20:38.529Z"
+    "modifiedDate": "2023-11-21T14:28:52.971Z"
   },
   {
     "title": "Software installation request",
@@ -199,9 +201,9 @@
     "description": "I need to install Eclipse IDE",
     "userName": "Irfan Nagoo",
     "id": "SR478",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-20T06:55:02.992Z",
-    "modifiedDate": "2023-11-20T14:00:29.564Z"
+    "modifiedDate": "2023-11-21T12:23:46.815Z"
   },
   {
     "title": "New charger request",
@@ -212,7 +214,7 @@
     "id": "SR627",
     "status": "Unassigned",
     "createDate": "2023-11-20T13:52:01.070Z",
-    "modifiedDate": "2023-11-20T16:07:09.993Z"
+    "modifiedDate": "2023-11-21T05:00:10.170Z"
   },
   {
     "title": "New Table request",
@@ -221,8 +223,44 @@
     "description": "I need new table",
     "userName": "John Cams",
     "id": "SR469",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-20T15:57:36.192Z",
-    "modifiedDate": "2023-11-20T16:05:33.104Z"
+    "modifiedDate": "2023-11-21T13:38:06.012Z",
+    "assignedAgent": "Roger Mat"
+  },
+  {
+    "id": "SR31",
+    "status": "Open",
+    "createDate": "2023-11-21T07:32:15.285Z",
+    "modifiedDate": "2023-11-21T08:29:54.902Z",
+    "title": "Need to install Chrome",
+    "description": "I need to install chrome",
+    "category": "Software",
+    "type": "Software Installation",
+    "userName": "Irfan Nagoo",
+    "assignedAgent": "Philip Andersen"
+  },
+  {
+    "title": "Activate my Id card",
+    "category": "Security",
+    "type": "Activate Badge",
+    "description": "I need to to activate my Id card",
+    "userName": "Tim Mccan",
+    "id": "SR497",
+    "status": "Closed",
+    "createDate": "2023-11-21T12:58:26.501Z",
+    "modifiedDate": "2023-11-21T12:59:19.982Z",
+    "assignedAgent": "Stacy Kim"
+  },
+  {
+    "title": "New laptop request",
+    "category": "Facility",
+    "type": "New Item",
+    "description": "I need new laptop as I joined today.",
+    "userName": "Irfan Nagoo",
+    "id": "SR805",
+    "status": "Unassigned",
+    "createDate": "2023-11-21T14:29:57.353Z",
+    "modifiedDate": "2023-11-21T14:29:57.353Z"
   }
 ]

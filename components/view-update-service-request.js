@@ -6,6 +6,7 @@ export default function ViewUpdateServiceRequest({ id, categoryType, isOpen, onC
     const [isEditMode, setIsEditMode] = useState(false);
     const [types, setTypes] = useState([]);
     const [serReqDetail, setSerReqDetail] = useState({ title: '' });
+    
     useEffect(() => {
         async function fetchData() {
             const response = await getServiceRequestById(id);
@@ -84,7 +85,7 @@ export default function ViewUpdateServiceRequest({ id, categoryType, isOpen, onC
                                     : <input type="text" name="category" id="category" defaultValue={serReqDetail && serReqDetail.category} readOnly={!isEditMode} className="bg-white text-gray-900 text-sm px-2" required />
                                 }
                             </div>
-                            <div className="col-span-2 sm:col-span-1">
+                            <div className={`${!isEditMode ? 'flex' : ''} 'col-span-2 sm:col-span-1`}>
                                 <label htmlFor="type" className={`${isEditMode ? 'block mb-2' : ''} text-sm font-medium text-gray-900`}>Type:</label>
                                 {isEditMode ?
                                     <select name="type" id="type" defaultValue={serReqDetail && serReqDetail.type} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg valid:border-green-500 focus:outline-none block w-full p-2.5" required>
@@ -115,14 +116,14 @@ export default function ViewUpdateServiceRequest({ id, categoryType, isOpen, onC
                         </div>
 
                         <div className="flex justify-end">
-                            <div className="px-2">
-                                <button type="button" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-4 rounded-full" onClick={handleOnClose}>
-                                    Close
-                                </button>
-                            </div>
-                            <div className="">
+                        <div className="">
                                 <button type="submit" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-5 rounded-full">
                                     {isEditMode ? 'Save' : 'Edit'}
+                                </button>
+                            </div>
+                            <div className="px-2">
+                                <button type="button" className="bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-xs font-bold py-2 px-4 rounded-full" onClick={handleOnClose}>
+                                    Cancel
                                 </button>
                             </div>
                         </div>
