@@ -300,15 +300,16 @@
     "modifiedDate": "2023-11-22T07:43:21.624Z"
   },
   {
-    "title": "New Request for ID Badge",
+    "title": "New Request for ID badge",
     "category": "Security",
     "type": "New Badge",
     "description": "I need new Id badge",
     "userName": "Irfan Nagoo",
     "id": "SR715",
-    "status": "Unassigned",
+    "status": "Open",
     "createDate": "2023-11-22T08:38:48.341Z",
-    "modifiedDate": "2023-11-22T08:38:48.341Z"
+    "modifiedDate": "2023-11-22T09:27:45.550Z",
+    "assignedAgent": "Dolly Hans"
   },
   {
     "title": "New request for Software",
@@ -320,6 +321,18 @@
     "status": "Closed",
     "createDate": "2023-11-22T08:39:33.022Z",
     "modifiedDate": "2023-11-22T08:40:44.428Z",
+    "assignedAgent": "Mike Roger"
+  },
+  {
+    "title": "New chair needed",
+    "category": "Facility",
+    "type": "New Item",
+    "description": "New chair is required",
+    "userName": "Irfan Nagoo",
+    "id": "SR335",
+    "status": "Closed",
+    "createDate": "2023-11-22T09:26:32.994Z",
+    "modifiedDate": "2023-11-22T09:27:19.359Z",
     "assignedAgent": "Mike Roger"
   }
 ]
