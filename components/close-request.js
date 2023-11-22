@@ -7,7 +7,6 @@ export default function CloseServiceRequest({ id, isOpen, onClose }) {
         e.preventDefault();
         await closeServiceRequest(id);
         onClose();
-        window.location.reload();
     }
 
     return (

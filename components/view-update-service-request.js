@@ -42,9 +42,8 @@ export default function ViewUpdateServiceRequest({ id, categoryType, isOpen, onC
         } else {
             const formData = new FormData(e.currentTarget);
             const jsonRequest = Object.fromEntries(formData);
-            await updateServiceRequest(jsonRequest);
+            await updateServiceRequest(id, jsonRequest);
             onClose();
-            window.location.reload();
         }
     }
 

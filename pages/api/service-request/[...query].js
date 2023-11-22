@@ -132,7 +132,7 @@ async function updateServiceRequest(req, res) {
         result.userName = request.userName;
         result.modifiedDate = new Date().toISOString();
         await fsPromises.writeFile(jsonPath, JSON.stringify(jsonData, undefined, 2));
-        return res.status(404).json({
+        return res.status(200).json({
             code: "OK",
             message: "Request processed Successfully"
         });

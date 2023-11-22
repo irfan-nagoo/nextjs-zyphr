@@ -9,31 +9,29 @@ import {
 export default function Dashboard({ colHeaders, totalRecordCount, initialServiceRequests, categoryType }) {
 
     const pageNo = 0
-    const pageSize = 5;
+    const pageSize = 10;
     const [currentPage, setCurrentPage] = useState(pageNo);
-    const [rowData, setRowData] = useState(initialServiceRequests);
     const [searchQuery, setSearchQuery] = useState(undefined);
     const [id, setId] = useState(0);
+
+    let rowData = initialServiceRequests;
+    if (searchQuery){
+        rowData = search(searchQuery, currentPage, pageSize);
+    } else {
+        rowData = getAllServiceRequests(currentPage, pageSize);
+    }
 
     const handlePaginationClick = async (pageNo) => {
         if (pageNo < 0) {
             pageNo = 0;
         }
         setCurrentPage(pageNo);
-        const result = (searchQuery && searchQuery.length > 0)
-            ? await search(searchQuery, pageNo, pageSize) : await getAllServiceRequests(pageNo, pageSize)
-        setRowData(result);
     }
 
     const handleSearchInput = async (event) => {
         const query = event.target.value;
         setSearchQuery(query);
         setCurrentPage(pageNo);
-        if (query.length >= 3) {
-            setRowData(await search(query, pageNo, pageSize));
-        } else if (query.length === 0) {
-            setRowData(await getAllServiceRequests(pageNo, pageSize));
-        }
     }
 
     const handleCheckboxChange = (event) => {

@@ -1,26 +1,16 @@
 
-import { useState, useEffect } from "react";
-import { getUsers } from "../lib/user";
 import { assignServiceRequest } from "../lib/service-request";
+import { getUsers } from "../lib/user";
 
 export default function AssignAgent({ id, isOpen, onClose }) {
 
-    const [users, setUsers] = useState([{ id: '' }]);
-    useEffect(() => {
-        async function fetchData() {
-            const response = await getUsers();
-            setUsers(response);
-        }
-        fetchData();
-    }, []);
-
+    const users = getUsers();
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const jsonRequest = Object.fromEntries(formData);
         await assignServiceRequest(id, jsonRequest);
         onClose();
-        window.location.reload();
     }
 
     return (

@@ -60,15 +60,15 @@
   },
   {
     "id": "SR1005",
-    "title": "Facility request",
+    "title": "Facility Request for Cup",
     "description": "In need a coffee cup",
     "category": "Facility",
     "type": "New Item",
     "status": "Open",
     "userName": "Roger Mat",
-    "assignedAgent": "Stacy Kim",
+    "assignedAgent": "Philip Andersen",
     "createDate": "2023-11-15",
-    "modifiedDate": "2023-11-21T08:32:56.944Z"
+    "modifiedDate": "2023-11-22T08:11:42.990Z"
   },
   {
     "id": "SR1006",
@@ -157,9 +157,9 @@
     "description": "I need software",
     "userName": "Mike Jackson",
     "id": "SR97",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-17T08:58:47.321Z",
-    "modifiedDate": "2023-11-17T08:58:47.321Z"
+    "modifiedDate": "2023-11-22T07:22:55.083Z"
   },
   {
     "title": "New Software request",
@@ -168,9 +168,10 @@
     "description": "Install vscode",
     "userName": "Mike Jackson",
     "id": "SR736",
-    "status": "Unassigned",
+    "status": "Open",
     "createDate": "2023-11-17T10:44:33.541Z",
-    "modifiedDate": "2023-11-17T10:44:33.541Z"
+    "modifiedDate": "2023-11-22T07:51:52.645Z",
+    "assignedAgent": "Philip Andersen"
   },
   {
     "title": "Need to install software",
@@ -179,9 +180,9 @@
     "description": "I need to install software",
     "userName": "Tim Mccan",
     "id": "SR66",
-    "status": "Unassigned",
+    "status": "Closed",
     "createDate": "2023-11-17T13:03:37.225Z",
-    "modifiedDate": "2023-11-17T13:03:37.225Z"
+    "modifiedDate": "2023-11-22T07:59:48.528Z"
   },
   {
     "title": "ID Badge activation",
@@ -253,7 +254,7 @@
     "assignedAgent": "Stacy Kim"
   },
   {
-    "title": "New laptop request",
+    "title": "New Laptop request",
     "category": "Facility",
     "type": "New Item",
     "description": "I need new laptop as I joined today.",
@@ -261,6 +262,64 @@
     "id": "SR805",
     "status": "Unassigned",
     "createDate": "2023-11-21T14:29:57.353Z",
-    "modifiedDate": "2023-11-21T14:29:57.353Z"
+    "modifiedDate": "2023-11-22T07:49:45.933Z"
+  },
+  {
+    "title": "New software installation",
+    "category": "Software",
+    "type": "Software Installation",
+    "description": "I need to install vscode on my laptop",
+    "userName": "Irfan Nagoo",
+    "id": "SR58",
+    "status": "Open",
+    "createDate": "2023-11-22T06:18:05.691Z",
+    "modifiedDate": "2023-11-22T07:21:05.010Z",
+    "assignedAgent": "Mike Roger"
+  },
+  {
+    "title": "Need to change table for desktop",
+    "category": "Facility",
+    "type": "Change Item",
+    "description": "I need to change the table for desktop",
+    "userName": "Mike Jackson",
+    "id": "SR159",
+    "status": "Open",
+    "createDate": "2023-11-22T06:22:21.873Z",
+    "modifiedDate": "2023-11-22T07:27:27.871Z",
+    "assignedAgent": "Dolly Hans"
+  },
+  {
+    "title": "Id Badge activation request",
+    "category": "Security",
+    "type": "Activate Badge",
+    "description": "Badge activation request",
+    "userName": "Irfan Nagoo",
+    "id": "SR688",
+    "status": "Unassigned",
+    "createDate": "2023-11-22T07:36:22.245Z",
+    "modifiedDate": "2023-11-22T07:43:21.624Z"
+  },
+  {
+    "title": "New Request for ID Badge",
+    "category": "Security",
+    "type": "New Badge",
+    "description": "I need new Id badge",
+    "userName": "Irfan Nagoo",
+    "id": "SR715",
+    "status": "Unassigned",
+    "createDate": "2023-11-22T08:38:48.341Z",
+    "modifiedDate": "2023-11-22T08:38:48.341Z"
+  },
+  {
+    "title": "New request for Software",
+    "category": "Software",
+    "type": "Software Upgrade",
+    "description": "I need to upgrade my Windows",
+    "userName": "Tim Mccan",
+    "id": "SR604",
+    "status": "Closed",
+    "createDate": "2023-11-22T08:39:33.022Z",
+    "modifiedDate": "2023-11-22T08:40:44.428Z",
+    "assignedAgent": "Mike Roger"
   }
 ]

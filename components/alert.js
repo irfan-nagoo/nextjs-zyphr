@@ -7,7 +7,7 @@ export default function Alert({ message, isOpen, onClose }) {
                 <div className="relative bg-white rounded-xl shadow">
                     <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t-xl bg-[#0a0a0a]">
                         <h3 className="text-md font-semibold text-white">
-                            Alert!
+                            Alert
                         </h3>
                         <button type="button" onClick={onClose} className="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

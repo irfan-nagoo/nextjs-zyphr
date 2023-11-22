@@ -20,7 +20,6 @@ export default function CreateServiceRequest({ categoryType, isOpen, onClose }) 
         const jsonRequest = Object.fromEntries(formData);
         await saveServiceRequest(jsonRequest);
         onClose();
-        window.location.reload();
     }
 
     return (
